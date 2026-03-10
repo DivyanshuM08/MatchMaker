@@ -46,17 +46,26 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    // Phase 2: API
+
+    //API
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+
+    //coroutines
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
-    // Phase 3: Room
+
+    //Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+
+    //ksp - symbol processing
     ksp(libs.androidx.room.compiler)
+
+    //image loading
+    implementation(libs.glide)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
