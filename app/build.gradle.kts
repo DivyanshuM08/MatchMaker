@@ -5,8 +5,10 @@ plugins {
 
 android {
     namespace = "com.example.matchmaker"
-    compileSdk {
-        version = release(36)
+    compileSdk = 36
+
+    buildFeatures {
+        viewBinding = true
     }
 
     defaultConfig {
