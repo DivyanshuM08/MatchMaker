@@ -120,15 +120,23 @@ class MainActivity : AppCompatActivity() {
         networkCallback = object : ConnectivityManager.NetworkCallback() {
             override fun onLost(network: Network) {
                 runOnUiThread {
+                    val wasOnline = !isOffline
                     isOffline = true
-                    Snackbar.make(binding.main, getString(R.string.youre_offline), Snackbar.LENGTH_LONG).show()
+                    invalidateOptionsMenu()
+                    if (wasOnline) {
+                        Snackbar.make(binding.main, getString(R.string.youre_offline), Snackbar.LENGTH_LONG).show()
+                    }
                 }
             }
 
             override fun onAvailable(network: Network) {
                 runOnUiThread {
+                    val wasOffline = isOffline
                     isOffline = false
-                    Snackbar.make(binding.main, getString(R.string.back_online), Snackbar.LENGTH_LONG).show()
+                    invalidateOptionsMenu()
+                    if (wasOffline) {
+                        Snackbar.make(binding.main, getString(R.string.back_online), Snackbar.LENGTH_LONG).show()
+                    }
                 }
             }
         }
