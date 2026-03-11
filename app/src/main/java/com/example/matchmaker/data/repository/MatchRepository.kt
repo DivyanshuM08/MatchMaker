@@ -1,6 +1,5 @@
 package com.example.matchmaker.data.repository
 
-import com.example.matchmaker.data.api.ApiProvider
 import com.example.matchmaker.data.api.RandomUserApi
 import com.example.matchmaker.data.api.UserMapper
 import com.example.matchmaker.data.db.MatchProfileDao
@@ -16,7 +15,7 @@ import kotlin.random.Random
  */
 class MatchRepository(
     private val dao: MatchProfileDao,
-    private val api: RandomUserApi = ApiProvider.randomUserApi
+    private val api: RandomUserApi
 ) {
 
     fun getAll(): Flow<List<MatchProfileEntity>> = dao.getAll()

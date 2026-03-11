@@ -1,5 +1,6 @@
 package com.example.matchmaker
 
+import dagger.hilt.android.AndroidEntryPoint
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -20,14 +21,12 @@ import com.example.matchmaker.ui.main.MatchListViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    val application = MatchMateApplication()
 
-    private val viewModel: MatchListViewModel by viewModels {
-        MatchListViewModel.Factory(application.matchRepository, this)
-    }
+    private val viewModel: MatchListViewModel by viewModels()
 
     private val adapter = MatchAdapter(
         onAccept = { viewModel.accept(it) },
