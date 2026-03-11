@@ -7,4 +7,7 @@ package com.example.matchmaker.domain
 object MyProfile {
     const val age: Int = 30
     const val city: String = "Sydney"
+    const val country: String = "Australia"
+    const val religion: String = "Hindu"
+    const val occupation: String = "Software Developer"
 }

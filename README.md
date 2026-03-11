@@ -26,7 +26,14 @@ The assignment asked for at least two extra fields that matter for a matrimonial
 
 ## Match score
 
-We use a simple formula: up to 50 points for age (closer age = higher score, using `max(0, 50 - 2 * |myAge - cardAge|)`), and 50 points if the city matches (case-insensitive). The total is capped at 100. “My” age and city are fixed in `MyProfile` for now; you could later plug in a real profile screen or prefs.
+We use a **weighted four-factor** algorithm (total 0–100):
+
+- **Age (35%)** – Closer age = higher score; decays with difference using `max(0, 35 - (7 * |myAge - cardAge| / 4))`.
+- **Location (30%)** – Same city = 30 points; same country only = 15; else 0 (case-insensitive).
+- **Religion (20%)** – Exact match (case-insensitive) = 20; else 0.
+- **Occupation (15%)** – Exact match (case-insensitive) = 15; else 0.
+
+“My” profile (age, city, country, religion, occupation) is defined in `MyProfile`; you could later plug in a real profile screen or prefs so the score reflects the user’s own details.
 
 ## Offline and errors
 
@@ -38,4 +45,4 @@ If a legal or product rule said we can’t show profile photos, we’d hide the 
 
 ## If I had more time
 
-I’d add a proper “my profile” screen so the user can set their own age and city (and maybe education/religion) and have the match score reflect that. Right now it’s hardcoded; making it configurable would make the score feel more meaningful.
+I’d add a proper “my profile” screen so the user can set their own age, city, country, religion, and occupation and have the match score reflect that. Right now these are hardcoded in `MyProfile`; making them configurable would make the score feel more meaningful.

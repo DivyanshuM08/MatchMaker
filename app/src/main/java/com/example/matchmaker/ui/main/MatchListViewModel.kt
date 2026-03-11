@@ -43,8 +43,14 @@ class MatchListViewModel @Inject constructor(
                             matchScore = MatchScoreCalculator.compute(
                                 MyProfile.age,
                                 MyProfile.city,
+                                MyProfile.country,
+                                MyProfile.religion,
+                                MyProfile.occupation,
                                 e.age,
-                                e.city
+                                e.city,
+                                e.country,
+                                e.religion,
+                                e.occupation
                             )
                         )
                     }
