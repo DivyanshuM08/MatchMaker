@@ -1,8 +1,11 @@
 package com.example.matchmaker.ui.main
 
+import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.matchmaker.R
 import com.example.matchmaker.data.db.ProfileStatus
 import com.example.matchmaker.data.repository.MatchRepository
 import com.example.matchmaker.domain.MatchScoreCalculator
@@ -22,7 +25,8 @@ data class MatchListUiState(
 )
 
 class MatchListViewModel(
-    private val repository: MatchRepository
+    private val repository: MatchRepository,
+    private val context: Context
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MatchListUiState())
@@ -62,7 +66,7 @@ class MatchListViewModel(
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    error = e.message ?: "Something went wrong"
+                    error = e.message ?: context.getString(R.string.something_went_wrong)
                 )
             }
         }
@@ -85,11 +89,12 @@ class MatchListViewModel(
     }
 
     class Factory(
-        private val repository: MatchRepository
+        private val repository: MatchRepository,
+        private val context : Context
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MatchListViewModel(repository) as T
+            return MatchListViewModel(repository, context) as T
         }
     }
 }

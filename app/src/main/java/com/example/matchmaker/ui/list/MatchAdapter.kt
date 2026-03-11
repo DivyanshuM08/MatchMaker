@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
+import com.example.matchmaker.R
 import com.example.matchmaker.data.db.ProfileStatus
 import com.example.matchmaker.databinding.ItemMatchCardBinding
 
@@ -33,14 +34,15 @@ class MatchAdapter(
 
         fun bind(item: MatchCardItem) {
             val e = item.entity
+            val ctx = binding.root.context
             binding.textName.text = e.name
-            binding.textAgeCity.text = "${e.age}, ${e.city}"
-            binding.textMatchScore.text = "Match: ${item.matchScore}%"
-            binding.textEducationReligion.text = "${e.education} · ${e.religion}"
+            binding.textAgeCity.text = ctx.getString(R.string.age_city_format, e.age, e.city)
+            binding.textMatchScore.text = ctx.getString(R.string.match_score_format, item.matchScore)
+            binding.textEducationReligion.text = ctx.getString(R.string.education_religion_format, e.education, e.religion)
             binding.textStatus.text = when (e.status) {
-                ProfileStatus.PENDING -> "Pending"
-                ProfileStatus.ACCEPTED -> "Accepted"
-                ProfileStatus.DECLINED -> "Declined"
+                ProfileStatus.PENDING -> ctx.getString(R.string.status_pending)
+                ProfileStatus.ACCEPTED -> ctx.getString(R.string.status_accepted)
+                ProfileStatus.DECLINED -> ctx.getString(R.string.status_declined)
             }
             binding.buttonAccept.setOnClickListener { onAccept(item) }
             binding.buttonDecline.setOnClickListener { onDecline(item) }

@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="MatchMate"
+        app:title="@string/match_mate"
         app:titleTextColor="?attr/colorOnPrimary" />
 
     <ProgressBar
@@ -32,43 +32,12 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:visibility="visible" />
 
-    <LinearLayout
-        android:id="@+id/errorLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:visibility="visible">
-
-        <TextView
-            android:id="@+id/textError"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="?attr/textAppearanceBodyMedium"
-            tools:text="Network error" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonRetry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Retry" />
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/textEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="24dp"
-        android:text="No matches yet. Tap Retry to load."
+        android:text="@string/no_matches_yet_tap_retry_to_load"
         android:textAppearance="?attr/textAppearanceBodyLarge"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
