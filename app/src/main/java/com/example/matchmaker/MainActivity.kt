@@ -56,7 +56,11 @@ class MainActivity : AppCompatActivity() {
 
         isOffline = !isNetworkAvailable()
 
-        viewModel.refresh()
+        if (isNetworkAvailable()) {
+            viewModel.refresh()
+        } else {
+            Snackbar.make(binding.main, getString(R.string.no_internet_try_again), Snackbar.LENGTH_LONG).show()
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
